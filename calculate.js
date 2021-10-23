@@ -1,14 +1,3 @@
-/*
-Disclaimer: for education purpose only
-
-Note:
-- Only calculate items have been delivered
-
-1) Open lazada and login
-2) Open console (F12 or CTRL+SHIFT+I)
-3) Insert code & run
-*/
-
 var total = 0;
 var item = 0;
 var pageSzie = 5;
@@ -34,9 +23,9 @@ function start() {
 
 function orderList(linkage, lifecycle) {
     opts['body'] = '{' +
-        '"data":{"orderList":{"tag":"orderList","fields":{"chosenLimit":{"text":"All Orders","key":6}},"type":"biz"}},' +
+        '"data":{"orderList":{"tag":"orderList","fields":{"chosenLimit":{"text":"All Orders","key":6},"selected":"ALL"},"type":"biz"}},' +
         '"linkage":{"common":{"compress":true,"queryParams":"' + linkage.common.queryParams + '"}},' +
-        '"lifecycle":{"pageSize":'+pageSzie+',"totalPageNum":' + lifecycle.totalPageNum + ',"pageNum":' + lifecycle.pageNum + '}}';
+        '"lifecycle":{"pageSize":' + pageSzie + ',"totalPageNum":' + lifecycle.totalPageNum + ',"pageNum":' + lifecycle.pageNum + '}}';
     fetch('https://my.lazada.com.my/customer/api/async/order-list', opts).then((response) => {
         return response.json();
     }).then(async (body) => {
